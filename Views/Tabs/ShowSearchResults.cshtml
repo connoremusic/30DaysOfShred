@@ -3,10 +3,10 @@
 	ViewData["Title"] = "Search Results";
 }
 
-<h1 class="display-4 text-white">Search Results</h1>
+<h1 class="display-6 text-white">Search Results</h1>
 
-<h2>Guitar Tabs</h2>  
-<table class="table table-bordered">  
+<h2 class="text-white">Guitar Tabs</h2>  
+<table class="table table-bordered text-white">  
     <thead>  
         <tr>  
             <th>@Html.DisplayNameFor(m => m.Title)</th>  
@@ -16,7 +16,7 @@
         @foreach (var guitarTab in Model)  
         {  
             <tr>  
-                <td>@guitarTab.Title</td>  
+                <td class="display-6">@guitarTab.Title</td>  
             </tr>  
         }  
     </tbody>  

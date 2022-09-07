@@ -22,23 +22,24 @@ namespace _30DaysOfShred.Controllers
             return View();
         }
 
-        public ActionResult ShowSearchResults()
+        public ActionResult ShowSearchResults(string searchPhrase)
         {
             List<GuitarTab> guitarTabsList = new List<GuitarTab>();
-            string CS = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-            using (SqlConnection con = new SqlConnection(CS))
+            SqlConnection con = new SqlConnection("Data Source=DEEPTHOUGHT-2\\SQLEXPRESS;Initial Catalog=guitar_tabs_database;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
             {
-                SqlCommand cmd = new SqlCommand("SELECT name FROM guitar_tabs_files", con);
-                cmd.CommandType = CommandType.Text;
                 con.Open();
+
+                SqlCommand cmd = new SqlCommand($"SELECT name FROM guitar_tabs_files WHERE name=@nameParam", con);
+                SqlParameter nameParam = new SqlParameter("@nameParam", SqlDbType.VarChar);
+                nameParam.Value = searchPhrase;
+                cmd.Parameters.Add(nameParam);
 
                 SqlDataReader rdr = cmd.ExecuteReader();
                 while (rdr.Read())
                 {
                     var guitarTab = new GuitarTab();
 
-                    //guitarTab.Id = Convert.ToInt32(rdr["stream_id"]);
-                    guitarTab.Title = rdr["Name"].ToString();
+                    guitarTab.Title = rdr["name"].ToString();
                     guitarTabsList.Add(guitarTab);
                 }
             }
@@ -74,9 +75,6 @@ namespace _30DaysOfShred.Controllers
         }
 
         // GET: Jokes/ShowSearchResults
-        public async Task<IActionResult> ShowSearchResults(string SearchPhrase)
-        {
-            return View("SearchResults", await _context.GuitarTab.Where(j => j.Title.Contains(SearchPhrase)).ToListAsync());
-        }
+        
     }
 }
