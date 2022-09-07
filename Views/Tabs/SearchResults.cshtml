@@ -1,0 +1,23 @@
+﻿@model IEnumerable<_30DaysOfShred.Models.GuitarTab>
+@{
+	ViewData["Title"] = "Search Results";
+}
+
+<h1 class="display-4 text-white">Search Results</h1>
+
+<h2>Guitar Tabs</h2>  
+<table class="table table-bordered">  
+    <thead>  
+        <tr>  
+            <th>@Html.DisplayNameFor(m => m.Title)</th>  
+        </tr>  
+    </thead>  
+    <tbody>  
+        @foreach (var guitarTab in Model)  
+        {  
+            <tr>  
+                <td>@guitarTab.Title</td>  
+            </tr>  
+        }  
+    </tbody>  
+</table> 

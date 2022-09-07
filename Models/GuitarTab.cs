@@ -12,5 +12,12 @@
             Title = title;
             TabCategories = tabCategories;
         }
+
+        public GuitarTab()
+        {
+            this.Id = -1;
+            this.Title = "";
+            this.TabCategories = new List<string>();
+        }
     }
 }
