@@ -29,7 +29,9 @@ namespace _30DaysOfShred.Controllers
             {
                 con.Open();
 
-                SqlCommand cmd = new SqlCommand($"SELECT name FROM guitar_tabs_files WHERE name=@nameParam", con);
+                SqlCommand cmd = new SqlCommand("SELECT guitar_tabs_files.name FROM guitar_tabs_files " +
+                    "JOIN tab_tags ON guitar_tabs_files.stream_id = tab_tags.Tab_ID " +
+                    "JOIN tags ON tags.Tag_ID = tab_tags.Tag_ID WHERE tags.Tag =  @nameParam", con);
                 SqlParameter nameParam = new SqlParameter("@nameParam", SqlDbType.VarChar);
                 nameParam.Value = searchPhrase;
                 cmd.Parameters.Add(nameParam);
@@ -45,36 +47,5 @@ namespace _30DaysOfShred.Controllers
             }
             return View(guitarTabsList);
         }
-
-        private static void GetGuitarTabByName(string connectionString)
-        {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                SqlCommand command = new SqlCommand(null, connection);
-
-                // Create and prepare an SQL statement.
-                command.CommandText = "SELECT name FROM guitar_tabs WHERE name = @name";
-
-                SqlParameter nameParam = new SqlParameter("@name", SqlDbType.VarChar);
-                //SqlParameter descParam = new SqlParameter("@desc", SqlDbType.Text, 100);
-                //idParam.Value = 20;
-                //descParam.Value = "First Region";
-                command.Parameters.Add(nameParam);
-                //command.Parameters.Add(descParam);
-
-                // Call Prepare after setting the Commandtext and Parameters.
-                command.Prepare();
-                command.ExecuteNonQuery();
-
-                // Change parameter values and call ExecuteNonQuery.
-                //command.Parameters[0].Value = 21;
-                //command.Parameters[1].Value = "Second Region";
-                //command.ExecuteNonQuery();
-            }
-        }
-
-        // GET: Jokes/ShowSearchResults
-        
     }
 }
