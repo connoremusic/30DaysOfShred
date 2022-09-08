@@ -6,10 +6,22 @@
 <h1 class="display-6 text-white">Search Results</h1>
 
 <h2 class="text-white">Guitar Tabs</h2>  
+    <form asp-action="ShowSearchResults">
+            <div class="form-group">
+                <label for="SearchPhrase" class="control-label"></label>
+                <input name="SearchPhrase" class="form-control" placeholder="Search for Tabs"/>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Search" class="btn-shred btn-lg"/>
+            </div>
+        </form>
+
 <table class="table table-bordered text-white">  
     <thead>  
         <tr>  
-            <th>@Html.DisplayNameFor(m => m.Title)</th>  
+            <th>@Html.DisplayNameFor(m => m.Title)</th> 
+            <th>@Html.DisplayNameFor(m => m.TabCategories)</th>
+            <th>Download Link</th>
         </tr>  
     </thead>  
     <tbody>  
@@ -17,6 +29,17 @@
         {  
             <tr>  
                 <td class="display-6">@guitarTab.Title</td>  
+                <td class="display-6">
+                    @for (int i=0; i<guitarTab.TabCategories.Count; i++)
+                    {
+                        <ul class="display-6">
+                            @guitarTab.TabCategories[i], 
+                        </ul>
+                    }
+                </td>
+                <td>
+
+                </td>
             </tr>  
         }  
     </tbody>  

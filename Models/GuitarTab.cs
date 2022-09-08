@@ -2,20 +2,21 @@
 {
     public class GuitarTab
     {
-        public int Id { get; set; }
+        public Guid uniqueId { get; set; }
         public string Title { get; set; }
+        [System.ComponentModel.DisplayName("Tags")]
         public List<string> TabCategories { get; set; }
 
-        public GuitarTab(int id, string title, List<string> tabCategories)
+        public GuitarTab(Guid uniqueId, string title, List<string> tabCategories)
         {
-            Id = id;
+            this.uniqueId = uniqueId;
             Title = title;
             TabCategories = tabCategories;
         }
 
         public GuitarTab()
         {
-            this.Id = -1;
+            this.uniqueId = Guid.Empty;
             this.Title = "";
             this.TabCategories = new List<string>();
         }
