@@ -3,9 +3,21 @@
 	ViewData["Title"] = "Search Results";
 }
 
-<h1 class="display-6 text-white">Search Results</h1>
+@section head{
+    <style type="text/css">
+        body {
+            background-image: url('/resources/ConcertBackground2.jpg');
+            background-blend-mode: soft-light;
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            margin: 0;
+        }
+    </style>
+}
 
-<h2 class="text-white">Guitar Tabs</h2>  
+<h1 class="display-4 text-white">Search for Guitar Tabs by Keyword</h1> 
+<div class="col-md-4">
     <form asp-action="ShowSearchResults">
             <div class="form-group">
                 <label for="SearchPhrase" class="control-label"></label>
@@ -15,9 +27,9 @@
                 <input type="submit" value="Search" class="btn-shred btn-lg"/>
             </div>
         </form>
-
-<table class="table table-bordered text-white">  
-    <thead>  
+</div>
+<table class="table custom-table text-white">  
+    <thead class="table">  
         <tr>  
             <th>@Html.DisplayNameFor(m => m.Title)</th> 
             <th>@Html.DisplayNameFor(m => m.TabCategories)</th>
@@ -28,17 +40,19 @@
         @foreach (var guitarTab in Model)  
         {  
             <tr>  
-                <td class="display-6">@guitarTab.Title</td>  
-                <td class="display-6">
+                <td class="text-white">@guitarTab.Title</td>  
+                <td class="text-white">
                     @for (int i=0; i<guitarTab.TabCategories.Count; i++)
                     {
-                        <ul class="display-6">
-                            @guitarTab.TabCategories[i], 
-                        </ul>
+                        <div class="">
+                            @guitarTab.TabCategories[i]
+                        </div>
                     }
                 </td>
                 <td>
-
+                    <button type="button" class="btn-shred btn btn-group-sm" asp-area="" asp-controller="Tabs" asp-action="Exercises">
+                        <h2>Download Tab</h2>
+                    </button>
                 </td>
             </tr>  
         }  

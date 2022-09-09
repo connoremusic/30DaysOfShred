@@ -4,30 +4,20 @@
     ViewData["Title"] = "Search";
 }
 
-<h1 class="display-4 text-white">Search for Guitar Tabs by Keyword</h1>
-
-@*<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    <a asp-action="" asp-route=""></a>
-                </td>
-            </tr>
+@section head{
+    <style type="text/css">
+        body {
+            background-image: url('/resources/ConcertBackground2.jpg');
+            background-blend-mode: soft-light;
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            margin: 0;
         }
-    </tbody>
-</table>*@
+    </style>
+}
+
+<h1 class="display-4 text-white">Search for Guitar Tabs by Keyword</h1>
 
 <div class="row">
     <div class="col-md-4">
