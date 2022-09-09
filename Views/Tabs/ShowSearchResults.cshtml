@@ -36,25 +36,29 @@
             <th>Download Link</th>
         </tr>  
     </thead>  
-    <tbody>  
-        @foreach (var guitarTab in Model)  
-        {  
-            <tr>  
-                <td class="text-white">@guitarTab.Title</td>  
-                <td class="text-white">
-                    @for (int i=0; i<guitarTab.TabCategories.Count; i++)
-                    {
-                        <div class="">
-                            @guitarTab.TabCategories[i]
-                        </div>
-                    }
-                </td>
-                <td>
-                    <button type="button" class="btn-shred btn btn-group-sm" asp-area="" asp-controller="Tabs" asp-action="Exercises">
-                        <h2>Download Tab</h2>
-                    </button>
-                </td>
-            </tr>  
-        }  
+    <tbody>
+        @if (Model != null)
+        {
+            foreach (var guitarTab in Model)  
+            {  
+                <tr>  
+                    <td class="text-white">@guitarTab.Title</td>  
+                    <td class="text-white">
+                        @for (int i=0; i<guitarTab.TabCategories.Count; i++)
+                        {
+                            <div class="">
+                                @guitarTab.TabCategories[i]
+                            </div>
+                        }
+                    </td>
+                    <td>
+                        <button type="button" class="btn-shred btn btn-group-sm" asp-area="" asp-controller="Tabs" asp-action="Exercises">
+                            <h2>Download Tab</h2>
+                        </button>
+                    </td>
+                </tr>  
+            }
+        }
+
     </tbody>  
 </table> 

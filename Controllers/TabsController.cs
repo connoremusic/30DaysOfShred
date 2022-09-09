@@ -24,6 +24,10 @@ namespace _30DaysOfShred.Controllers
 
         public ActionResult ShowSearchResults(string searchPhrase)
         {
+            if (string.IsNullOrEmpty(searchPhrase))
+            {
+                return View();
+            }
             List<GuitarTab> guitarTabsList = new List<GuitarTab>();
             SqlConnection con = new SqlConnection("Data Source=DEEPTHOUGHT-2\\SQLEXPRESS;Initial Catalog=guitar_tabs_database;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
             
@@ -36,6 +40,7 @@ namespace _30DaysOfShred.Controllers
                     "JOIN tags ON tags.Tag_ID = tab_tags.Tag_ID WHERE tags.Tag =  @nameParam", con);
                 SqlParameter nameParam = new SqlParameter("@nameParam", SqlDbType.VarChar);
                 nameParam.Value = searchPhrase;
+                
                 cmd.Parameters.Add(nameParam);
 
                 SqlDataReader rdr = cmd.ExecuteReader();
