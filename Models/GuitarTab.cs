@@ -24,30 +24,6 @@ namespace _30DaysOfShred.Models
             this.TabCategories = new List<string>();
         }
 
-        //public static string GetDownloadLink()
-        //{
-        //    SqlConnection con = new SqlConnection("Data Source=DEEPTHOUGHT-2\\SQLEXPRESS;Initial Catalog=guitar_tabs_database;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
-        //    con.Open();
-
-        //    SqlCommand cmd = new SqlCommand("SELECT file_stream.GetFileNamespacePath(1, 2) FROM guitar_tabs_files WHERE stream_id = @idParam", con);
-        //    SqlParameter idParam = new SqlParameter("@idParam", SqlDbType.UniqueIdentifier);
-        //    idParam.Value = new Guid("8E91CDB4-602E-ED11-8D84-04ED33527636");
-        //    cmd.Parameters.Add(idParam);
-
-        //    string? filePath = null;
-        //    Object pathObject = cmd.ExecuteScalar();
-        //    if (DBNull.Value != pathObject)
-        //    {
-        //        filePath = (string)pathObject;
-        //    }
-        //    else
-        //    {
-        //        throw new System.Exception("problem");
-        //    }
-
-        //    return filePath;
-        //}
-
         public static byte[] GetGuitarTabData(string stream_id)
         {
             SqlConnection con = new SqlConnection("Data Source=DEEPTHOUGHT-2\\SQLEXPRESS;Initial Catalog=guitar_tabs_database;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
