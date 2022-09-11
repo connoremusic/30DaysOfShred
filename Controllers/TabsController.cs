@@ -41,6 +41,34 @@ namespace _30DaysOfShred.Controllers
             return File(data, "application/octet-stream", filename);
         }
 
+        public ActionResult Category1()
+        {
+            return RedirectToAction("ShowSearchResults", new { searchPhrase = "shred" });
+        }
+
+        public ActionResult Category2()
+        {
+            return RedirectToAction("ShowSearchResults", new { searchPhrase = "sweep" });
+        }
+
+        public ActionResult Category3()
+        {
+            return RedirectToAction("ShowSearchResults", new { searchPhrase = "rhythm" });
+        }
+        public ActionResult Category4()
+        {
+            return RedirectToAction("ShowSearchResults", new { searchPhrase = "tapping" });
+        }
+        public ActionResult Category5()
+        {
+            return RedirectToAction("ShowSearchResults", new { searchPhrase = "riff" });
+        }
+        public ActionResult Category6()
+        {
+            return RedirectToAction("ShowSearchResults", new { searchPhrase = "hybrid picking" });
+        }
+
+        [Authorize]
         public ActionResult ShowSearchResults(string searchPhrase)
         {
             if (string.IsNullOrEmpty(searchPhrase))
